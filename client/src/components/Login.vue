@@ -1,12 +1,6 @@
 <template>
-  <v-row>
-    <v-spacer />
-    <v-col col="6" >
-      <div class="white elevation-2" >
-        <v-toolbar flat dense class="cyan" dark>
-          <v-toolbar-title>Login</v-toolbar-title>
-        </v-toolbar>
 
+      <panel title="Login">
         <div class="pl-4 pr-4 pt-2 pb-2">
           <form autocomplete="off" name="tab-tracker-form">
             <v-text-field
@@ -24,18 +18,16 @@
             <v-btn class="cyan" dark @click="login">login</v-btn>
           </form>
         </div>
-      </div>
-    </v-col>
-    <v-spacer />
-  </v-row>
+      </panel>
 </template>
 <script>
 import AuthenticationService from '../../services/AuthenticationService'
+import Panel from "./Panel";
 export default {
   data () {
     return {
-      email: 'abc',
-      password: '123',
+      email: '',
+      password: '',
       error: null
     }
   },
@@ -54,6 +46,9 @@ export default {
         this.error = error.response.data.error
       }
     }
+  },
+  components: {
+    Panel
   }
 }
 </script>
