@@ -11,7 +11,7 @@ app.use(bodyParser.json())
 app.use(cors())
 // eslint-disable-next-line no-undef
 require('./routes.js')(app)
-sequelize.sync()
+sequelize.sync({force: true})
     .then( () => {
         app.listen(config.port)
         console.log(`server started ${config.port}`)

@@ -1,9 +1,12 @@
 <template>
   <v-row>
-    <v-spacer/>
-    <v-col col="6" >
+
+    <v-col >
       <v-toolbar flat dense class="cyan" dark>
         <v-toolbar-title>{{title}}</v-toolbar-title>
+        <slot name="action">
+
+        </slot>
       </v-toolbar>
 
       <div class="pl-4 pr-4 pt-2 pb-2">
@@ -12,7 +15,7 @@
         </slot>
       </div>
     </v-col>
-    <v-spacer/>
+
   </v-row>
 </template>
 <script>

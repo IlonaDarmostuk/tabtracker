@@ -1,5 +1,7 @@
 <template>
-
+  <v-row>
+    <v-spacer/>
+    <v-col col="6" >
       <panel title="Login">
         <div class="pl-4 pr-4 pt-2 pb-2">
           <form autocomplete="off" name="tab-tracker-form">
@@ -19,10 +21,13 @@
           </form>
         </div>
       </panel>
+    </v-col>
+  <v-spacer/>
+  </v-row>
 </template>
 <script>
 import AuthenticationService from '../../services/AuthenticationService'
-import Panel from "./Panel";
+import Panel from './Panel'
 export default {
   data () {
     return {
