@@ -12,7 +12,7 @@
         <div class="song-genre">
           {{song.genre}}
         </div>
-        <v-btn slot="action" @click="navigateTo({name: 'song-edit', params: {songId: song.id}})"  class="cyan" dark medium  middle>
+        <v-btn slot="action" :to="{name: 'song-edit', params() {return {songId: song.id}}}"  class="cyan" dark medium  middle>
           <v-icon>
            edit
           </v-icon>
@@ -28,7 +28,6 @@
   </panel>
 </template>
 <script>
-import Panel from '../Panel'
 export default {
   props: [
     'song'
@@ -37,9 +36,6 @@ export default {
     navigateTo (route) {
       this.$router.push(route)
     }
-  },
-  components: {
-    Panel
   }
 }
 </script>

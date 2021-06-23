@@ -1,13 +1,11 @@
 <template>
-  <v-row>
-    <v-spacer/>
-    <v-col col="12" >
+
       <panel title="Songs">
-          <v-btn slot="action" @click="navigateTo({name: 'songs-create'})" fab class="cyan accent-2" light medium absolute right middle>
-            <v-icon>
-              mdi-plus
-            </v-icon>
-          </v-btn>
+        <v-btn slot="action"  :to="{name: 'songs-create'}" fab class="cyan accent-2" light medium absolute right middle>
+          <v-icon>
+            mdi-plus
+          </v-icon>
+        </v-btn>
 
         <div v-for="song in songs" :key="song.id" class="song">
 
@@ -23,39 +21,33 @@
                 {{song.genre}}
               </div>
 
-              <v-btn class="cyan" dark @click="navigateTo({name: 'song', params: {songId: song.id}})">song</v-btn>
+              <v-btn class="cyan" dark :to="{name: 'song', params: {songId: song.id}}">song</v-btn>
             </v-flex>
             <v-flex xs6>
               <img :src="song.albumImageUrl" alt="" class="album-image">
             </v-flex>
           </v-layout>
 
-
         </div>
       </panel>
-    </v-col>
-    <v-spacer/>
-  </v-row>
+
 </template>
 <script>
-import SongService from '../../services/SongService'
-import Panel from './Panel'
+
+import SongService from '../../../services/SongService'
 export default {
   data () {
     return {
       songs: null
     }
   },
-  components: {
-    Panel
-  },
-  methods: {
-    navigateTo(route) {
-      this.$router.push(route)
+  watch: {
+    '$route.query.search': {
+      immediate: true,
+      async handler (value) {
+        this.songs = (await SongService.index(value)).data
+      }
     }
-  },
-  async mounted () {
-    this.songs = (await SongService.index()).data
   }
 }
 </script>
@@ -76,8 +68,8 @@ export default {
   .song-genre{
     font-size: 20px;
   }
-.album-image{
-  width: 70%;
-  margin: 0 auto;
-}
+  .album-image{
+    width: 70%;
+    margin: 0 auto;
+  }
 </style>

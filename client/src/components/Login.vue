@@ -16,7 +16,7 @@
               v-model="password"
             ></v-text-field>
             <br>
-            <div v-html="error" class="error"></div>
+            <div v-html="error" class="error--text"></div>
             <v-btn class="cyan" dark @click="login">login</v-btn>
           </form>
         </div>
@@ -27,7 +27,6 @@
 </template>
 <script>
 import AuthenticationService from '../../services/AuthenticationService'
-import Panel from './Panel'
 export default {
   data () {
     return {
@@ -46,23 +45,21 @@ export default {
 
         this.$store.dispatch('setToken', response.data.token)
         this.$store.dispatch('setUser', response.data.user)
+        this.$router.push({
+          name: 'songs'
+        }
+        )
         console.log(response)
       } catch (error) {
         this.error = error.response.data.error
       }
     }
-  },
-  components: {
-    Panel
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .error{
-    color: red;
-  }
   .toolbar-title{
     color: white;
   }

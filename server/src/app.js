@@ -16,4 +16,4 @@ sequelize.sync()
         app.listen(config.port)
         console.log(`server started ${config.port}`)
     })
-// app.listen(process.env.PORT || 8081)
+

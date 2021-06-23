@@ -21,7 +21,6 @@
 </template>
 <script>
 import SongService from '../../../services/SongService'
-import Panel from '../Panel'
 import SongMetaData from './SongMetaData'
 import YouTube from './YouTube'
 import Lyrics from './Lyrics'
@@ -41,8 +40,7 @@ export default {
     Tab,
     Lyrics,
     YouTube,
-    SongMetaData,
-    Panel
+    SongMetaData
   }
 }
 </script>
