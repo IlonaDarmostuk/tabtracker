@@ -9,7 +9,7 @@ const app = express()
 app.use(morgan('combined'))
 app.use(bodyParser.json())
 app.use(cors())
-// eslint-disable-next-line no-undef
+require('./passport')
 require('./routes.js')(app)
 sequelize.sync()
     .then( () => {

@@ -1,26 +1,43 @@
 <template>
   <v-row>
-    <v-spacer/>
-    <v-col col="12" >
+    <v-col col="6" v-if="isUserLoggedIn">
+      <songs-bookmarks />
+      <recently-viewed-songs class="mt-2">
+
+      </recently-viewed-songs >
+    </v-col>
+    <v-col col="6" >
       <songs-search-panel />
       <songs-panel class="mt-2"/>
     </v-col>
-    <v-spacer/>
+
   </v-row>
 </template>
 <script>
 import SongsPanel from './SongsPanel'
+import RecentlyViewedSongs from './RecentlyViewedSongs'
+import SongsBookmarks from './SongsBookmarks'
 import SongService from '../../../services/SongService'
+
 import SongsSearchPanel from './SongsSearchPanel'
+import {mapState} from 'vuex'
+
 export default {
   data () {
     return {
       songs: null
     }
   },
+  computed: {
+    ...mapState([
+      'isUserLoggedIn'
+    ])
+  },
   components: {
+    SongsBookmarks,
     SongsPanel,
-    SongsSearchPanel
+    SongsSearchPanel,
+    RecentlyViewedSongs
   },
   async mounted () {
     this.songs = (await SongService.index()).data

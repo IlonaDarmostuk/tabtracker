@@ -57,9 +57,8 @@ export default {
       try {
         this.bookmark = (await BookmarksService.post({
           songId: this.$store.state.route.params.songId,
-          userId: this.$store.state.user.id
+          userId: this.user.id
         })).data
-
       } catch (e) {
         console.log(e)
       }
@@ -90,7 +89,9 @@ export default {
         songId: this.$store.state.route.params.songId,
         userId: this.$store.state.user.id
       })).data
-      this.bookmark = bookmark
+      if(bookmark.length){
+        this.bookmark = bookmark[0]
+      }
 
     } catch (e) {
       console.log(e)
@@ -99,7 +100,6 @@ export default {
 }
 </script>
 <style scoped>
-
   .song{
     padding: 20px;
     height: 330px;
